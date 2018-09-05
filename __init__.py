@@ -3,7 +3,6 @@ import os
 import inspect
 from bpy.utils import register_class, unregister_class
 from . import ui
-#from . import img_texturizer
 
 bl_info = {
     'name': 'Tex Batch Adder',
@@ -29,6 +28,6 @@ def register():
 	register_modules([ui])
 
 def unregister():
-	register_modules(reverse([ui]), unregister=True)
+	register_modules(reversed([ui]), unregister=True)
 
 __name__ == '__main__' and register()

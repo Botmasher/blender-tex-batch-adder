@@ -1,7 +1,7 @@
 import bpy
 from bpy.props import *
 from bpy_extras.io_utils import ImportHelper    # help with file browser
-from . import img_texturizer
+from .img_texturizer import ImgTexturizer
 
 class ImgTexturesPanel (bpy.types.Panel):
     bl_label = 'Import Textures as One Plane'
@@ -10,7 +10,7 @@ class ImgTexturesPanel (bpy.types.Panel):
     bl_region_type = 'WINDOW'
     bl_context = 'texture'
     update_existing = BoolProperty(name="Add to this object", default=True)
-    # build the panel
+
     def draw (self, ctx):
         self.update_existing = True
         # selection to allow for create vs update
@@ -64,7 +64,7 @@ class ImgTexturesImport (bpy.types.Operator, ImportHelper):
         img_dir = self.store_directory(self.directory)
 
         # add textures to plane
-        texBatchAdder = img_teturizer.ImgTexturizer(img_filenames, img_dir)
+        texBatchAdder = ImgTexturizer(img_filenames, img_dir)
         texBatchAdder.setup(self.replace_current, self.update_existing, self.use_transparency)
         return {'FINISHED'}
 
